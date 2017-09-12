@@ -41,6 +41,13 @@ public class AccountWithdrawTest {
 
     assertThatThrownBy(() -> account.withdraw(0))
         .isInstanceOf(InvalidAmountException.class);
+  }
 
+  @Test
+  public void withdrawNegativeAmountResultsInInvalidAmountException() throws Exception {
+    Account account = new Account(10);
+
+    assertThatThrownBy(() -> account.withdraw(-1))
+        .isInstanceOf(InvalidAmountException.class);
   }
 }

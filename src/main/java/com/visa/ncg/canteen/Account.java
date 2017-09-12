@@ -20,7 +20,7 @@ public class Account {
   }
 
   public void withdraw(int amount) {
-    if (amount == 0) {
+    if (amount <= 0) {
       throw new InvalidAmountException();
     }
     if (amount > balance) {

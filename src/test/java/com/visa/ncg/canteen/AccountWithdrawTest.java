@@ -35,4 +35,12 @@ public class AccountWithdrawTest {
         .isEqualTo(4);
   }
 
+  @Test
+  public void withdrawZeroDollarsResultsInInvalidAmountException() throws Exception {
+    Account account = new Account(10);
+
+    assertThatThrownBy(() -> account.withdraw(0))
+        .isInstanceOf(InvalidAmountException.class);
+
+  }
 }

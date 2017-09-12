@@ -16,6 +16,10 @@ public class Account {
   }
 
   public void deposit(int amount) {
+    if (amount <= 0) {
+      throw new InvalidAmountException();
+    }
+
     balance += amount;
   }
 

@@ -1,9 +1,12 @@
 package com.visa.ncg.canteen;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class AccountRepository {
 
     private HashMap<Long, Account> accountRepo = new HashMap<Long, Account>();
@@ -15,6 +18,7 @@ public class AccountRepository {
         }
 
     }
+
 
     public AccountRepository() {}
 
@@ -29,8 +33,8 @@ public class AccountRepository {
         // if the account came in with NO id, replace it with one generated from AtomicLong.
         // return the Account object that must now have its id set
         Long longval = entity.getId();
-        Long toUse = atom.getAndIncrement();
         if (longval == null) {
+            Long toUse = atom.get();
             while (accountRepo.containsKey(toUse)) {
                 toUse = atom.getAndIncrement();
                 System.out.println(toUse.intValue());

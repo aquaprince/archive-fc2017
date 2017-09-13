@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AccountController {
     @GetMapping("/api/accounts/{accountId}")
-    public Account accountInfo(@PathVariable String accountId) {
+    public AccountResponse accountInfo(@PathVariable String accountId) {
         Account account = new Account(10);
         account.setId(Long.parseLong(accountId));
-        return account;
+        AccountResponse response = new AccountResponse();
+        response.setBalance(account.balance());
+        response.setId(account.getId());
+        return response;
     }
 }

@@ -3,6 +3,7 @@ package com.visa.ncg.canteen;
 public class Account {
   private int balance;
   private Long id = null;
+  private String name;
 
   public Account(int initialAmount) {
     balance = initialAmount;
@@ -44,4 +45,11 @@ public class Account {
     }
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class AccountRepository {
 
     private HashMap<Long, Account> accountRepo = new HashMap<Long, Account>();
-    private AtomicLong atom = new AtomicLong();
+    private AtomicLong atom = new AtomicLong(1L);
     public AccountRepository(List<Account> accounts) {
 
         for (Account ac : accounts) {

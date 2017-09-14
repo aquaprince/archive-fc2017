@@ -50,4 +50,5 @@ public class AccountWithdrawTest {
     assertThatThrownBy(() -> account.withdraw(-1))
         .isInstanceOf(InvalidAmountException.class);
   }
+
 }

@@ -9,7 +9,8 @@ public class AccountIdNotFoundException extends RuntimeException {
     super();
   }
 
-  public AccountIdNotFoundException(String message) {
-    super(message);
+  public AccountIdNotFoundException(String accountId) {
+    super("An account with ID '" + accountId + "' was not found.");
   }
+
 }

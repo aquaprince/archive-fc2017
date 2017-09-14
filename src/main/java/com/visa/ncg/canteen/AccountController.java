@@ -20,7 +20,7 @@ public class AccountController {
   public AccountResponse accountInfo(@PathVariable("accountId") String accountId) {
     Account account = accountRepository.findOne(Long.valueOf(accountId));
     if (account == null) {
-      throw new AccountIdNotFoundException();
+      throw new AccountIdNotFoundException(accountId);
     }
 
     AccountResponse accountResponse = new AccountResponse();

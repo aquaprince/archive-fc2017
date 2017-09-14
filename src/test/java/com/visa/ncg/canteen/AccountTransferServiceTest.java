@@ -8,23 +8,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class AccountTransferServiceTest {
 
     @Test
-    public void transfer10ToEmptyAccountResultsInSecondAccountHaving10() {
+    public void transfer10ResultsIn10Transferred() {
         Account account1 = new Account(10);
         Account account2 = new Account();
-        AccountTransferService tService = new AccountTransferService();
-        tService.transfer(account1, account2, 10);
-        assertThat(account2.balance())
-                .isEqualTo(10);
-    }
-    @Test
-    public void transfer10Removes10FromSource() {
-        Account account1 = new Account(10);
-        Account account2 = new Account();
-        int initialBalance = account1.balance();
         AccountTransferService tService = new AccountTransferService();
         tService.transfer(account1, account2, 10);
         assertThat(account1.balance())
-                .isEqualTo(initialBalance - 10);
+                .isEqualTo(0);
+        assertThat(account2.balance())
+                .isEqualTo(10);
     }
     @Test
     public void transferNegativeThrowsException() {
@@ -72,14 +64,14 @@ public class AccountTransferServiceTest {
     }
 
     @Test
-    public void transferGreaterThanAvailableBalanceThrowsInsufficientFundsException() {
+    public void transferGreaterThanAvailableBalanceThrowsInsufficientBalanceException() {
         Account account1 = new Account(1);
         Account account2 = new Account(10);
         AccountTransferService tService = new AccountTransferService();
 
         assertThatThrownBy(() -> {
             tService.transfer(account1, account2, 10);
-        }).isInstanceOf(InsufficientFundsException.class);
+        }).isInstanceOf(InsufficientBalanceException.class);
     }
 
 }

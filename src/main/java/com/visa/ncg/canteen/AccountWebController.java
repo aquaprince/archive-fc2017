@@ -3,6 +3,7 @@ package com.visa.ncg.canteen;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -54,7 +55,18 @@ public class AccountWebController {
         return "all-accounts";
     }
 
-//    @PostMapping("/create-account")
-    
+    @GetMapping("/create-account")
+    public String createAccountView() {
+        return "create-account";
+    }
+
+    @PostMapping("/create-account")
+    public String createAccount(@ModelAttribute("accountName") String name) {
+        Account toAdd = new Account();
+        toAdd.setName(name);
+        accountRepository.save(toAdd);
+
+        return "redirect:/account";
+    }
 
 }

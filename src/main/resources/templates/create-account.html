@@ -6,12 +6,10 @@
 </head>
 <body>
 <h1>New Account:</h1>
-<form action="/create-account" method="post">
-    <p>Name: <input type="text" name="accountName"/></p>
-    <p>
-        <input type="submit" value="Create Account"/>
-        <input type="reset" value="Clear"/>
-    </p>
+<form action="#" th:action="@{/create-account}" th:object="${CreateForm}" method="post">
+    <p>Name for Account: <input type="text" th:field="*{accountName}"/></p>
+    <p>Initial Deposit: $<input type="text" th:field="*{initialDeposit}"/></p>
+    <p><input type="submit" value="Create Account"/> <input type="reset" value="Clear"/></p>
 </form>
 </body>
 </html>

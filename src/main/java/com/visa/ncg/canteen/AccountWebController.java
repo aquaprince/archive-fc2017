@@ -14,11 +14,11 @@ import java.util.List;
 
 @Controller
 public class AccountWebController {
-    private InMemAccountRepository accountRepository;
+    private AccountRepository accountRepository;
     private CurrencyService currencyService;
 
 
-    public AccountWebController(InMemAccountRepository accountRepository, CurrencyService currencyService) {
+    public AccountWebController(AccountRepository accountRepository, CurrencyService currencyService) {
         this.currencyService = currencyService;
         this.accountRepository = accountRepository;
     }
@@ -42,11 +42,11 @@ public class AccountWebController {
 
     @GetMapping("/account")
     public String allAccountsView(Model model) {
-        List<Account> accounts = accountRepository.findAll();
-        if (accounts.size() < 1) {
-            //throw custom exception
-        }
-        List<AccountResponse> toReturn = new ArrayList<>(accounts.size());
+        Iterable<Account> accounts = accountRepository.findAll();
+//        if (accounts.size() < 1) {
+//            //throw custom exception
+//        }
+        List<AccountResponse> toReturn = new ArrayList<>();
         for (Account account : accounts) {
             AccountResponse response = new AccountResponse();
             response.setName(account.getName());
@@ -60,7 +60,11 @@ public class AccountWebController {
     }
 
     @GetMapping("/create-account")
-    public String createAccountView() {
+    public String createAccountView(Model model) {
+        CreateForm createdForm = new CreateForm();
+        createdForm.setAccountName("");
+        createdForm.setInitialDeposit(10);
+        model.addAttribute(createdForm);
         return "create-account";
     }
 
@@ -68,9 +72,9 @@ public class AccountWebController {
     public String createAccount(@ModelAttribute("accountName") String name) {
         Account toAdd = new Account();
         toAdd.setName(name);
-        accountRepository.save(toAdd);
+        Account added = accountRepository.save(toAdd);
 
-        return "redirect:/account";
+        return "redirect:/account/" +  added.getId();
     }
 
 

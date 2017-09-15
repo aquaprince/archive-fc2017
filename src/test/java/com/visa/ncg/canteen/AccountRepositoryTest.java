@@ -3,7 +3,7 @@ package com.visa.ncg.canteen;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,14 +20,14 @@ public class AccountRepositoryTest {
         accounts.add(a1);
         accounts.add(a2);
 
-        AccountRepository repo = new AccountRepository(accounts);
+        InMemAccountRepository repo = new InMemAccountRepository(accounts);
         assertThat(repo.findAll())
                 .hasSize(2);
     }
 
     @Test
     public void saveOneAccountShouldReturn1Account() {
-        AccountRepository repo = new AccountRepository();
+        InMemAccountRepository repo = new InMemAccountRepository();
         Account account = new Account();
         repo.save(account);
 
@@ -37,7 +37,7 @@ public class AccountRepositoryTest {
 
     @Test
     public void saveAccountNoIdShouldCreateId() {
-        AccountRepository repo = new AccountRepository();
+        InMemAccountRepository repo = new InMemAccountRepository();
         Account account = new Account();
 
         assertThat(repo.save(account).getId())
@@ -50,7 +50,7 @@ public class AccountRepositoryTest {
         Account a1 = new Account();
         a1.setId(1L);
         accounts.add(a1);
-        AccountRepository repo = new AccountRepository(accounts);
+        InMemAccountRepository repo = new InMemAccountRepository(accounts);
         assertThat(repo.findOne(1L).getId())
             .isEqualTo(a1.getId());
     }
@@ -61,14 +61,14 @@ public class AccountRepositoryTest {
         Account a1 = new Account();
         a1.setId(1L);
         accounts.add(a1);
-        AccountRepository repo = new AccountRepository(accounts);
+        InMemAccountRepository repo = new InMemAccountRepository(accounts);
         assertThat(repo.findOne(2L))
                 .isNull();
     }
 
     @Test
     public void findAllWithEmptyRepoShouldReturnEmptyList() {
-        AccountRepository repo = new AccountRepository();
+        InMemAccountRepository repo = new InMemAccountRepository();
 
         assertThat(repo.findAll())
                 .hasSize(0);
@@ -76,7 +76,7 @@ public class AccountRepositoryTest {
 
     @Test
     public void saveGivesAnUniqueID() {
-        AccountRepository repo = new AccountRepository();
+        InMemAccountRepository repo = new InMemAccountRepository();
         Account a3 = new Account();
         Account a4 = new Account();
         Long a3id = repo.save(a3).getId();

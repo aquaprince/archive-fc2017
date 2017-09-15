@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AccountController {
 
-    AccountRepository accountRepository;
+    InMemAccountRepository accountRepository;
 
-    public AccountController(AccountRepository accountRepository){
+    public AccountController(InMemAccountRepository accountRepository){
         this.accountRepository = accountRepository;
 
     }

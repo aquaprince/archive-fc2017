@@ -14,11 +14,11 @@ import java.util.List;
 
 @Controller
 public class AccountWebController {
-    private AccountRepository accountRepository;
+    private InMemAccountRepository accountRepository;
     private CurrencyService currencyService;
 
 
-    public AccountWebController(AccountRepository accountRepository, CurrencyService currencyService) {
+    public AccountWebController(InMemAccountRepository accountRepository, CurrencyService currencyService) {
         this.currencyService = currencyService;
         this.accountRepository = accountRepository;
     }

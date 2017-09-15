@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AccountDataLoader implements ApplicationRunner {
-    private AccountRepository accountRepository;
+    private InMemAccountRepository accountRepository;
 
-    public AccountDataLoader(AccountRepository accountRepository) {
+    public AccountDataLoader(InMemAccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 

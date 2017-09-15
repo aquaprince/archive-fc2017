@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class AccountRepository {
+public class InMemAccountRepository {
 
     private HashMap<Long, Account> accountRepo = new HashMap<Long, Account>();
     private AtomicLong atom = new AtomicLong(1L);
-    public AccountRepository(List<Account> accounts) {
+    public InMemAccountRepository(List<Account> accounts) {
 
         for (Account ac : accounts) {
             this.save(ac);
@@ -20,7 +20,7 @@ public class AccountRepository {
     }
 
 
-    public AccountRepository() {}
+    public InMemAccountRepository() {}
 
     public Account findOne(Long id) {
         // returns the Account that has the given id,

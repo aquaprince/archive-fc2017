@@ -15,11 +15,14 @@ import java.util.List;
 @Controller
 public class AccountWebController {
     private AccountRepository accountRepository;
+    private CurrencyService currencyService;
 
-    public AccountWebController(AccountRepository accountRepository){
+
+    public AccountWebController(AccountRepository accountRepository, CurrencyService currencyService) {
+        this.currencyService = currencyService;
         this.accountRepository = accountRepository;
-
     }
+
 
     @GetMapping("/account/{id}")
     public String accountView(@PathVariable("id") String id, Model model) {
@@ -32,7 +35,8 @@ public class AccountWebController {
         response.setBalance(account.balance());
         response.setName(account.getName());
         model.addAttribute("account", response);
-
+        int convertedCurrency = currencyService.convertToGbp(account.balance());
+        model.addAttribute("gbpBalance", convertedCurrency);
         return "account-view";
     }
 
@@ -68,5 +72,7 @@ public class AccountWebController {
 
         return "redirect:/account";
     }
+
+
 
 }

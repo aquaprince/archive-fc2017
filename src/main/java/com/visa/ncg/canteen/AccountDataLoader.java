@@ -16,6 +16,12 @@ public class AccountDataLoader implements ApplicationRunner {
   public void run(ApplicationArguments args) throws Exception {
     Account account = new Account();
     account.deposit(10);
+    account.setName("Luxuries");
+    accountRepository.save(account);
+
+    account = new Account();
+    account.deposit(80);
+    account.setName("Necessities");
     accountRepository.save(account);
   }
 }

@@ -13,7 +13,7 @@ public class AccountRepository {
 
   private Map<Long, Account> accountIdMap = new HashMap<>();
 
-  private final AtomicLong idGenerator = new AtomicLong();
+  private final AtomicLong idGenerator = new AtomicLong(1L);
 
   public AccountRepository() {
   }

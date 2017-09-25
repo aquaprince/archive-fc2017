@@ -1,5 +1,8 @@
 package com.visa.ncg.canteen;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class AccountTransferService {
 
     public void transfer(Account source, Account dest, int amount) {

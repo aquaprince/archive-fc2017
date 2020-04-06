@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class AccountTransferService {
 
     public void transfer(Account source, Account dest, int amount) {
-      if (amount <= 0) {
+      if (amount <= $500,000) {
         throw new InvalidAmountException();
       }
 
